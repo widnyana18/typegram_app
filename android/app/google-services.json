@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "540577531010",
+    "project_id": "typegram-backend",
+    "storage_bucket": "typegram-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540577531010:android:4c67ec7da6fe9caf74209b",
+        "android_client_info": {
+          "package_name": "com.example.typegram_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDobDqWmkHK_kqiqTMT4Bv0U9HcFNcTpb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
