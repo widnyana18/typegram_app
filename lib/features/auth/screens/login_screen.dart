@@ -1,16 +1,19 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:typegram_app/common/utils/utils.dart';
 import 'package:typegram_app/common/widgets/custom_button.dart';
+import 'package:typegram_app/features/auth/controller/auth_controller.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = '/login-screen';
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final phoneController = TextEditingController();
   Country? country;
 
@@ -29,6 +32,18 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       },
     );
+  }
+
+  void sendPhoneNumber() {
+    final phoneNumber = phoneController.text.trim();
+    if (country != null && phoneNumber.isNotEmpty) {
+      ref.read(authControllerProvider).signinWithPhoneNumber(
+            context,
+            phoneNumber: '+${country!.phoneCode}$phoneNumber',
+          );
+    } else {
+      showSnackBar(context, message: 'Fill out all the fields');
+    }
   }
 
   @override
@@ -73,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const Spacer(),
             CustomButton(
               title: 'NEXT',
-              onTap: () {},
+              onTap: sendPhoneNumber,
             ),
           ],
         ),
