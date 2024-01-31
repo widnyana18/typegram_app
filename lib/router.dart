@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:typegram_app/common/widgets/error.dart';
 import 'package:typegram_app/features/auth/screens/login_screen.dart';
 import 'package:typegram_app/features/auth/screens/otp_screen.dart';
+import 'package:typegram_app/features/auth/screens/user_information_screen.dart';
 
 Route<MaterialPageRoute> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -11,9 +12,14 @@ Route<MaterialPageRoute> generateRoute(RouteSettings settings) {
       );
 
     case OTPScreen.routeName:
-      final registerId = settings.arguments as String;
+      final verificationId = settings.arguments as String;
       return MaterialPageRoute(
-        builder: (context) => OTPScreen(registerId: registerId),
+        builder: (context) => OTPScreen(verificationId: verificationId),
+      );
+
+    case UserInformationScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => UserInformationScreen(),
       );
 
     default:

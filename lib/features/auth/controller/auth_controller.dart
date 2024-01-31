@@ -17,4 +17,16 @@ class AuthController {
   }) {
     auth.signinWithPhoneNumber(context, phoneNumber: phoneNumber);
   }
+
+  void verifyOTP(
+    BuildContext context, {
+    required String otpCode,
+    required String verificationId,
+  }) {
+    auth.verifyOTP(
+      context,
+      otpCode: otpCode,
+      verificationId: verificationId,
+    );
+  }
 }

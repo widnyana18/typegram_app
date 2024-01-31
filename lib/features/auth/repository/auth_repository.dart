@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:typegram_app/common/utils/utils.dart';
 import 'package:typegram_app/features/auth/screens/otp_screen.dart';
+import 'package:typegram_app/features/auth/screens/user_information_screen.dart';
 
 final authRepositoryProvider = Provider(
   (ref) {
@@ -42,6 +43,28 @@ class AuthRepository {
           );
         },
         codeAutoRetrievalTimeout: (verificationId) {},
+      );
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, message: e.message!);
+    }
+  }
+
+  void verifyOTP(
+    BuildContext context, {
+    required String otpCode,
+    required String verificationId,
+  }) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        smsCode: otpCode,
+        verificationId: verificationId,
+      );
+      await auth.signInWithCredential(credential);
+
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        UserInformationScreen.routeName,
+        (route) => false,
       );
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, message: e.message!);
