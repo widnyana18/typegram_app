@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:typegram_app/features/auth/screens/user_information_screen.dart';
 import 'package:typegram_app/features/landing/screens/landing_screen.dart';
 import 'package:typegram_app/firebase_options.dart';
 import 'package:typegram_app/router.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
         appBarTheme: const AppBarTheme(backgroundColor: backgroundColor),
       ),
-      home: const LandingScreen(),
+      home: const UserInformationScreen(),
     );
   }
 }
